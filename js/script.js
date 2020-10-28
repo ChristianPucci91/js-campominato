@@ -15,7 +15,8 @@ var mine = 5;
 // creo variabile array per i numeri generati ( mine del gioco).
 var numeriGenerati = [];
 // richiamo la funzione con gli argomenti 1 e livello
-var generaMine = generaNumeri(1,livello)
+numeriGenerati = generaNumeri(1,livello);
+console.log("l'array è composto da: ",numeriGenerati);
 
 // STEP 1 devo generare 16 numeri casuali tra 1 e 100, potrei usare un ciclo con un math random e acquisire tutti e 16 i numeri dentro un array.
 
@@ -23,31 +24,40 @@ var generaMine = generaNumeri(1,livello)
 function generaNumeri(min,max) {
 
   for (var i = 0; i < mine; i++) {
-    numeriGeneratiElemento = Math.floor(Math.random()* max +min);
-    // console.log(numeriGeneratiElemento);
+    numeriGeneratiElemento = Math.floor(Math.random()* max )+min;
     while (numeriGenerati.includes(numeriGeneratiElemento)) {
-      numeriGeneratiElemento = Math.floor(Math.random()* max +min);
+      numeriGeneratiElemento = Math.floor(Math.random()* max) +min;
     }
     numeriGenerati.push(numeriGeneratiElemento);
-    // numeriGeneratiElemento += numeriGeneratiElemento + numeriGeneratiElemento;
-    // console.log("numeri dell'array",numeriGeneratiElemento);
   }
-
+  return numeriGenerati;
 }
-console.log("l'array è composto da: ",numeriGenerati);
+
+
+
 
 // STEP 3 Chiedo con un prompt o input all'utente di inserire un numero compreso tra 1 e 100 per 84 volte, quindi ci sarà un ciclo con contatore a 84.
 var numeriInseriti = [];
-var partita = false;
+var punteggio = 0;
+var numeroTrovato = false;
 
-for (var x = 0; x < (livello-mine); x++) {
-  var inputUtente = parseInt(prompt("Inserisci un numero da 1 a " + livello));
-  while (numeriGenerati.includes(inputUtente)){
-    var inputUtente = parseInt(prompt("Numero già inserito, riprova"));
+
+while(numeroTrovato == false) {
+  var inputUser = parseInt(prompt("inserisci un numero da 1 a 10"))
+
+  if (numeriGenerati.includes(inputUser)) {
+    numeroTrovato = true;
+    console.log("hai perso;");
+  }else if ((punteggio == (livello-mine))){
+    console.log("complimenti, hai vinto");
+    console.log("Hai schivato tutte le mine, il tuo punteggio è ",punteggio);
   }
-  numeriInseriti.push(inputUtente);
-  console.log("i numeri inseriti ",numeriInseriti);
+  numeriInseriti.push(inputUser);
+  console.log("I numeri che hai giocato",numeriInseriti);
+  punteggio++;
+  console.log("il tuo punteggio è ", punteggio);
 }
+
 
 
 // STEP 4 il valore che andrà ad inserire l'utente andrà pushato all'interno di un array. Ogni volta che inserirà un valore nuovo, dovrò controllare con una condizione se il valore inserito sarà uguale agli elementi dell array.
