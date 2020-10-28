@@ -33,29 +33,31 @@ function generaNumeri(min,max) {
   return numeriGenerati;
 }
 
-
-
-
 // STEP 3 Chiedo con un prompt o input all'utente di inserire un numero compreso tra 1 e 100 per 84 volte, quindi ci sarà un ciclo con contatore a 84.
 var numeriInseriti = [];
 var punteggio = 0;
 var numeroTrovato = false;
 
 
-while(numeroTrovato == false) {
-  var inputUser = parseInt(prompt("inserisci un numero da 1 a 10"))
-
+while(numeroTrovato == false && punteggio != (livello-mine)) {
+  var inputUser = parseInt(prompt("inserisci un numero da 1 a " + livello))
+  while ((inputUser == 0) || (inputUser < 1) || (inputUser > livello) || (isNaN(inputUser)) || (numeriInseriti.includes(inputUser))){
+    inputUser = parseInt(prompt("Per favore, inserisci un numero secondo le regole"))
+  }
+  numeriInseriti.push(inputUser);
   if (numeriGenerati.includes(inputUser)) {
     numeroTrovato = true;
     console.log("hai perso;");
-  }else if ((punteggio == (livello-mine))){
-    console.log("complimenti, hai vinto");
-    console.log("Hai schivato tutte le mine, il tuo punteggio è ",punteggio);
+    console.log("il tuo punteggio è " + punteggio);
   }
-  numeriInseriti.push(inputUser);
   console.log("I numeri che hai giocato",numeriInseriti);
   punteggio++;
-  console.log("il tuo punteggio è ", punteggio);
+  // console.log("il tuo punteggio è ", punteggio);
+}
+
+if (punteggio == (livello-mine)) {
+  console.log("hai vinto");
+  console.log("il tuo punteggio è " + punteggio);
 }
 
 
