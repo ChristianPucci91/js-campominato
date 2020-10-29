@@ -11,8 +11,31 @@
 // >>>>>>>>>> INIZIO ESERCIZIO <<<<<<<<<<<<<<<
 
 // var livello sarà la variabile che utilizzeremo per l'esercizio bonus ovvero il range di numeri con cui si può giocare, per ora la settiamo a 16.
-var livello = 10;
-var mine = 5;
+var livello = 0;
+var mine = 16;
+// <<<<<<<<<<<<<<<<<<<<<<<<<<<<INIZIO BONUS>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>><
+livelloText = document.getElementById('livello');
+
+// Chiedo all'utente che tipo di difficoltà vuole affrontare.
+while(livello == 0) {
+  livelloDomanda = parseInt(prompt("Scegli la difficoltà: 1 = Facile 2 = Medio 3 = Difficile"));
+  while ((livelloDomanda < 1) || (isNaN(livelloDomanda)) || (livelloDomanda > 3)) {
+     livelloDomanda = parseInt(prompt("Per favore, inserisci un numero da 1 a 3"));
+  }
+  if (livelloDomanda == 1) {
+    livello = 100;
+    livelloText.innerHTML = "Hai scelto il livello " + livelloDomanda + ", giocherai con " + livello + " numeri."
+  }else if (livelloDomanda == 2) {
+    livello = 80;
+    livelloText.innerHTML = "Hai scelto il livello " + livelloDomanda + ", giocherai con " + livello + " numeri."
+  }else {
+    livello = 50;
+    livelloText.innerHTML = "Hai scelto il livello " + livelloDomanda + ", giocherai con " + livello + " numeri."
+  }
+
+}
+// <<<<<<<<<<<<<<<<<<<<<<<<<<<<FINE BONUS>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>><
+
 var numeriGenerati = [];// creo variabile array per i numeri generati ( mine del gioco).
 numeriGenerati = generaNumeri(1,livello);// richiamo la funzione con gli argomenti 1 e livello
 console.log(numeriGenerati); //lascio console log per verificare la funzionalità del programma
@@ -24,6 +47,19 @@ var numeroTrovato = false;// creo variabile esterna che mi servirà per i cicli
 // creo ciclo con condizioni: se la variabile esterna è false e se il punteggio dell'utente è diverso dai numeri che può giocare allora:
 while(numeroTrovato == false && punteggio != (livello-mine)) {
   var inputUser = parseInt(prompt("inserisci un numero da 1 a " + livello))
+
+  // <<<<<<<<<<<<<<<<<<<<<<<<<<<<INIZO BONUS>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>><
+
+  // creo condizioni e regole per l'inserimento dati utente
+  while ((inputUser == 0) || (inputUser < 1) || (inputUser > livello) || (isNaN(inputUser)) || (numeriInseriti.includes(inputUser))){
+    inputUser = parseInt(prompt("Per favore, inserisci un numero secondo le regole"))
+  }
+  // <<<<<<<<<<<<<<<<<<<<<<<<<<<<FINE BONUS>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>><
+
+  // creo condizioni e regole per l'inserimento dati utente
+  while ((inputUser == 0) || (inputUser < 1) || (inputUser > livello) || (isNaN(inputUser)) || (numeriInseriti.includes(inputUser))){
+    inputUser = parseInt(prompt("Per favore, inserisci un numero secondo le regole"))
+  }
   numeriInseriti.push(inputUser);
   // creo condizione dicendo che se il numero che inserisce l'utente è uguale a un elemento dell'array CPU allora modifico variabile esterna decretando che i giocatore ha perso
   if (numeriGenerati.includes(inputUser)) {
@@ -39,7 +75,7 @@ while(numeroTrovato == false && punteggio != (livello-mine)) {
 // Condizione per decretare che ha vinto l'utente dove dico che se il punteggio è uguale ai numeri che poteva giocare e se nei numeri che ha messo nessuno è uguale ai numeri della cpu ha vinto
 if (punteggio == (livello-mine) && (numeriGenerati.includes(inputUser))==false) {
   alert("Complimenti, mi hai battuto! Sei il vincitore!");
-  alert("Hai totalizzato il punteggio pieno: " + punteggio);
+  alert("Hai totalizzato il punteggio pieno: " + punteggio + " punti");
   document.getElementById('numeri_generati').innerHTML = numeriGenerati;
 }
 

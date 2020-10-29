@@ -1,0 +1,23 @@
+/* regole generali */
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+.container {
+  min-height: 150px;
+  width: 100%;
+  background: lightgrey;
+}
+h1,h2 ,h3{
+  margin:10px ;
+}
+
+.blue {
+  color:blue;
+}
+
+.red {
+  color:red;
+}
