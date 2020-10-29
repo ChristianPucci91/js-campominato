@@ -24,16 +24,14 @@ while(livello == 0) {
   }
   if (livelloDomanda == 1) {
     livello = 100;
-    livelloText.innerHTML = "Hai scelto il livello " + livelloDomanda + ", giocherai con " + livello + " numeri."
   }else if (livelloDomanda == 2) {
     livello = 80;
-    livelloText.innerHTML = "Hai scelto il livello " + livelloDomanda + ", giocherai con " + livello + " numeri."
   }else {
     livello = 50;
-    livelloText.innerHTML = "Hai scelto il livello " + livelloDomanda + ", giocherai con " + livello + " numeri."
   }
-
 }
+livelloText.innerHTML = "Hai scelto il livello " + livelloDomanda + ", giocherai con " + livello + " numeri."
+
 // <<<<<<<<<<<<<<<<<<<<<<<<<<<<FINE BONUS>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>><
 
 var numeriGenerati = [];// creo variabile array per i numeri generati ( mine del gioco).
