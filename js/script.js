@@ -11,8 +11,8 @@
 // >>>>>>>>>> INIZIO ESERCIZIO <<<<<<<<<<<<<<<
 
 // var livello sarà la variabile che utilizzeremo per l'esercizio bonus ovvero il range di numeri con cui si può giocare, per ora la settiamo a 16.
-var livello = 10;
-var mine = 5;
+var livello = 100;
+var mine = 16;
 var numeriGenerati = [];// creo variabile array per i numeri generati ( mine del gioco).
 numeriGenerati = generaNumeri(1,livello);// richiamo la funzione con gli argomenti 1 e livello
 console.log(numeriGenerati); //lascio console log per verificare la funzionalità del programma
